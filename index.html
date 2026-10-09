@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Daily Journal & Habit Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Animated Leaves -->
+  <div class="leaves-container">
+    <div class="leaf leaf-1">🍃</div>
+    <div class="leaf leaf-2">🍂</div>
+    <div class="leaf leaf-3">🍃</div>
+    <div class="leaf leaf-4">🍂</div>
+    <div class="leaf leaf-5">🍃</div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <span class="brand-icon">✨</span>
+        <div>
+          <h1>My Daily Habit & Finance Journal</h1>
+          <p>Spreadsheet Kegiatan Harian, Catatan Pengeluaran & Plant Challenge</p>
+        </div>
+      </div>
+      
+      <div class="header-controls">
+        <div class="mode-toggle-box">
+          <label for="modeSelect">💬 Mode Pesan:</label>
+          <select id="modeSelect">
+            <option value="umum">🌈 Umum / Universal</option>
+            <option value="islami">🌸 Islami</option>
+          </select>
+        </div>
+
+        <div class="date-picker-box">
+          <label for="currentDate">📅 Tanggal:</label>
+          <input type="date" id="currentDate">
+        </div>
+      </div>
+    </header>
+
+    <!-- Widget Plant Challenge & Ringkasan Keuangan -->
+    <section class="top-grid">
+      <!-- Plant Challenge -->
+      <div class="card plant-card">
+        <div class="plant-header">
+          <h3>🌱 Habit Challenge: Plant Growth</h3>
+          <span class="plant-stage-badge" id="plantStageName">Kecambah Segar</span>
+        </div>
+        <div class="plant-display">
+          <div class="plant-avatar" id="plantAvatar">🌱</div>
+          <div class="plant-info">
+            <p id="plantDialogue">"Yuk centang kegiatan produktifmu agar aku tumbuh makin subur!"</p>
+            <div class="xp-bar-container">
+              <div class="xp-bar-fill" id="xpBarFill" style="width: 25%;"></div>
+            </div>
+            <span class="xp-text" id="xpText">Progress Tumbuhan: 0 / 0 XP</span>
+          </div>
+        </div>
+        <button id="waterPlantBtn" class="btn btn-butter" style="margin-top:10px; width:100%;">💧 Siram Tanaman & Ambil Reward</button>
+      </div>
+
+      <!-- Ringkasan Keuangan -->
+      <div class="card finance-summary-card">
+        <h3>💰 Ringkasan Keuangan</h3>
+        <div class="finance-stats">
+          <div class="stat-item income">
+            <span class="stat-title">Total Pemasukan</span>
+            <span class="stat-amount" id="totalIncomeVal">Rp 0</span>
+          </div>
+          <div class="stat-item expense">
+            <span class="stat-title">Total Pengeluaran</span>
+            <span class="stat-amount" id="totalExpenseVal">Rp 0</span>
+          </div>
+        </div>
+        <div class="balance-box">
+          <span>Sisa Saldo Bersih:</span>
+          <strong id="netBalanceVal">Rp 0</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Spreadsheet Section -->
+    <section class="main-grid">
+      <!-- Table Kegiatan Harian & Habit -->
+      <div class="card spreadsheet-card">
+        <div class="card-title-bar">
+          <h2>📝 Daftar Kegiatan Harian & Habit</h2>
+          <div class="action-btn-group">
+            <button id="addPresetBtn" class="btn btn-sm btn-butter">📋 Opsi Kegiatan</button>
+            <button id="addCustomBtn" class="btn btn-sm btn-primary">+ Buat Sendiri</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="spreadsheet-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">Status</th>
+                <th>Kegiatan / Target Harian</th>
+                <th>Kategori</th>
+                <th style="width: 90px; text-align: center;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="habitTableBody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Form & Table Catatan Pengeluaran Bertanggal -->
+      <div class="card finance-log-card">
+        <div class="card-title-bar">
+          <h2>💸 Catatan Pengeluaran & Pemasukan</h2>
+        </div>
+        
+        <form id="financeForm" class="finance-form">
+          <div class="form-row">
+            <input type="date" id="finDate" required>
+            <select id="finType" required>
+              <option value="expense">🔴 Pengeluaran</option>
+              <option value="income">🟢 Pemasukan</option>
+            </select>
+          </div>
+          <input type="text" id="finDesc" placeholder="Keterangan (Cth: Beli buku, Uang jajan)" required>
+          <input type="number" id="finAmount" placeholder="Nominal (Rp)" required>
+          <button type="submit" class="btn btn-primary">+ Catat Transaksi</button>
+        </form>
+
+        <div class="table-wrapper" style="max-height: 220px;">
+          <table class="spreadsheet-table">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Jenis</th>
+                <th>Keterangan</th>
+                <th>Nominal</th>
+                <th style="width: 40px;"></th>
+              </tr>
+            </thead>
+            <tbody id="financeTableBody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <p>✨ *"Setiap langkah kecil konsistensi harianmu adalah investasi terbaik untuk masa depanmu."*</p>
+    </footer>
+  </div>
+
+  <!-- Modal Pilih Opsi Preset Kegiatan -->
+  <div id="presetModal" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <h2>📋 Pilih dari Opsi Kegiatan yang Disediakan</h2>
+      <p style="font-size: 13px; color: #664d53; margin-bottom: 12px;">Klik pada kegiatan yang ingin kamu tambahkan ke jurnal harianmu:</p>
+      <div class="preset-grid" id="presetListContainer">
+        <!-- Preset items injected by JS -->
+      </div>
+      <div style="margin-top: 16px; text-align: right;">
+        <button id="closePresetModalBtn" class="btn btn-secondary">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CUSTOM BARU: INPUT KEGIATAN SENDIRI (Ganti Prompt) -->
+  <div id="customInputModal" class="modal-overlay">
+    <div class="modal-box">
+      <h2>✏️ Tambah Kegiatan Baru</h2>
+      <p style="font-size: 13px; color: #664d53; margin-bottom: 12px;">Masukkan nama kegiatan atau target harianmu:</p>
+      <input type="text" id="customHabitInput" class="custom-modal-input" placeholder="Cth: Latihan coding 30 menit...">
+      <div class="modal-action-row">
+        <button id="cancelCustomModalBtn" class="btn btn-secondary">Batal</button>
+        <button id="saveCustomModalBtn" class="btn btn-primary">Simpan Kegiatan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pop-up Alert Dynamic & Motivating -->
+  <div id="alertModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon" id="modalIcon">🎉</div>
+      <h2 id="modalTitle">Wah, Kamu Keren Banget!</h2>
+      <p id="modalMessage">Pesan motivasi akan muncul di sini...</p>
+      <button id="closeModalBtn" class="btn btn-primary btn-lg">Terima Kasih, Lanjutkan! ➔</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
